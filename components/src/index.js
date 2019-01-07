@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import CD from "./CommentDetail";
 import fake from "faker";
+import AC from "./approveCard";
 
 const App = () => {
   return (
     <div className="ui container comments">
+      <AC />
       <CD
         author="Vidit"
         timeAgo="Today at 2am"
