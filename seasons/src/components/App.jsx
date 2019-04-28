@@ -4,29 +4,30 @@ class App extends Component {
   constructor(props) {
     super();
     this.props = props;
-    this.getLatLong();
   }
   state = {
     lat: null,
-    long: null,
     errorMessage: ""
   };
   render() {
-    return (
-      <div>
-        <h1 style={{ textAlign: "center" }}>Lattitude:{this.state.lat}</h1>
-        <h1 style={{ textAlign: "center" }}>Longitude:{this.state.long}</h1>
-        <h1 style={{ textAlign: "center" }}>Error:{this.state.errorMessage}</h1>
-      </div>
-    );
+    if (this.state.errorMessage && !this.state.lat) {
+      return <div> Error:{this.state.errorMessage}</div>;
+    }
+    if (!this.state.errorMessage && this.state.lat) {
+      return (
+        <div>
+          <Season lat={this.state.lat} />
+        </div>
+      );
+    }
+    return <div>Loading!</div>;
   }
 
-  getLatLong() {
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       position => {
         this.setState({
-          lat: position.coords.latitude,
-          long: position.coords.longitude
+          lat: position.coords.latitude
         });
       },
       err => {
