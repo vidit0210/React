@@ -3,6 +3,10 @@ import Season from './SeasonDisplay'
 class App extends Component {
     state = {}
     render() {
+        window.navigator.geolocation.getCurrentPosition(
+            (position) => console.log(position),
+            (err) => console.log(err)
+        )
         return (
             <div>
                 <h1>Hi there</h1>

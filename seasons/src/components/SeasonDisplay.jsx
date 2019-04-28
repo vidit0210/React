@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class Season extends Component {
     state = {}
     render() {
-        return (  );
+        return (<div></div>);
     }
 }
 
